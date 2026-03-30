@@ -1,0 +1,29 @@
+username: atomi
+name: nix
+description: AtomiCloud's nix template
+project: https://github.com/AtomiCloud/ketone.nix-template
+source: https://github.com/AtomiCloud/ketone.nix-template
+email: ernest@atomi.cloud
+tags: ["atomi","nix"]
+readme: cyan/README.MD
+templates: []
+processors:
+  - cyan/default
+plugins: []
+resolvers: []
+commands:
+  - 'chmod +x scripts/*.sh 2>/dev/null || true'
+build:
+  registry: ${DOMAIN:-docker.io}/${GITHUB_REPO_REF:-atomi}
+  platforms:
+    - linux/amd64
+    - linux/arm64
+  images:
+    template:
+      image: nix
+      dockerfile: cyan/Dockerfile
+      context: ./cyan
+    blob:
+      image: 'nix-blob'
+      dockerfile: cyan/blob.Dockerfile
+      context: .
