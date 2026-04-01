@@ -1,29 +1,76 @@
 tests:
-  - name: basic_generation
+  # ============================================
+  # No basic, No LLM
+  # ============================================
+  - name: no_basic_no_llm
     expected:
       type: snapshot
       value:
-        path: cyan/fixtures/expected/basic_generation
+        path: ./snapshots/no_basic_no_llm
+    validate:
+      - git init && git add -A && nix develop -c true
     answer_state:
-      cyan/new/username:
-        type: String
-        value: testuser
-      cyan/new/name:
-        type: String
-        value: test-template
-      cyan/new/description:
-        type: String
-        value: A test template
-      cyan/new/email:
-        type: String
-        value: test@example.com
-      cyan/new/more-tags/0:
+      cyan/nix/basic:
         type: String
         value: 'no'
-      cyan/new/project:
+      cyan/nix/llm:
         type: String
-        value: 'https://github.com/test/test'
-      cyan/new/source:
+        value: 'no'
+    deterministic_state: {}
+
+  # ============================================
+  # Yes basic, No LLM
+  # ============================================
+  - name: yes_basic_no_llm
+    expected:
+      type: snapshot
+      value:
+        path: ./snapshots/yes_basic_no_llm
+    validate:
+      - git init && git add -A && nix develop -c true
+    answer_state:
+      cyan/nix/basic:
         type: String
-        value: 'https://github.com/test/test'
+        value: 'yes'
+      cyan/nix/llm:
+        type: String
+        value: 'no'
+    deterministic_state: {}
+
+  # ============================================
+  # No basic, Yes LLM
+  # ============================================
+  - name: no_basic_yes_llm
+    expected:
+      type: snapshot
+      value:
+        path: ./snapshots/no_basic_yes_llm
+    validate:
+      - git init && git add -A && nix develop -c true
+    answer_state:
+      cyan/nix/basic:
+        type: String
+        value: 'no'
+      cyan/nix/llm:
+        type: String
+        value: 'yes'
+    deterministic_state: {}
+
+  # ============================================
+  # Yes basic, Yes LLM
+  # ============================================
+  - name: yes_basic_yes_llm
+    expected:
+      type: snapshot
+      value:
+        path: ./snapshots/yes_basic_yes_llm
+    validate:
+      - git init && git add -A && nix develop -c true
+    answer_state:
+      cyan/nix/basic:
+        type: String
+        value: 'yes'
+      cyan/nix/llm:
+        type: String
+        value: 'yes'
     deterministic_state: {}
