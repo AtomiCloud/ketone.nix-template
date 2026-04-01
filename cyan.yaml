@@ -10,9 +10,17 @@ templates: []
 processors:
   - cyan/default
 plugins: []
-resolvers: []
-commands:
-  - 'chmod +x scripts/*.sh 2>/dev/null || true'
+resolvers:
+  - resolver: atomi/md
+    config: {}
+    files: ['CLAUDE.md', 'README.md', '.envrc']
+  - resolver: atomi/nix
+    config: {}
+    files: ['nix/env.nix', 'nix/packages.nix', 'nix/fmt.nix', 'nix/pre-commit.nix', 'nix/shells.nix', 'flake.nix']
+  - resolver: atomi/ignore
+    config: {}
+    files: ['.gitignore']
+commands: []
 build:
   registry: ${DOMAIN:-docker.io}/${GITHUB_REPO_REF:-atomi}
   platforms:
