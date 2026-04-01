@@ -1,4 +1,4 @@
-import { type Cyan, type CyanGlob, StartTemplateWithLambda, GlobType } from '@atomicloud/cyan-sdk';
+import { StartTemplateWithLambda, GlobType } from '@atomicloud/cyan-sdk';
 
 const prefix = 'cyan/nix/';
 
@@ -14,30 +14,6 @@ StartTemplateWithLambda(async (i, d) => {
     ['yes', 'no'],
     `${prefix}llm`,
   );
-
-  const basicGlobs: CyanGlob[] =
-    basic === 'yes'
-      ? [
-          {
-            root: 'templates/basic',
-            glob: '**/*',
-            type: GlobType.Template,
-            exclude: [],
-          },
-        ]
-      : [];
-
-  const llmGlobs: CyanGlob[] =
-    llm === 'yes'
-      ? [
-          {
-            root: 'templates/llm',
-            glob: '**/*',
-            type: GlobType.Template,
-            exclude: [],
-          },
-        ]
-      : [];
 
   const config = {
     vars: {},
