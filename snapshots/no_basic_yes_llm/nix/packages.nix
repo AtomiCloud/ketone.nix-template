@@ -1,4 +1,4 @@
-{ pkgs, pkgs-2511, pkgs-unstable, atomi }:
+{ pkgs, pkgs-2605, pkgs-unstable, atomi }:
 let
 
   all = rec {
@@ -14,8 +14,8 @@ let
 
       }
     );
-    nix-2511 = (
-      with pkgs-2511;
+    nix-2605 = (
+      with pkgs-2605;
       {
         inherit
           treefmt;
@@ -24,6 +24,6 @@ let
   };
 in
 with all;
-nix-2511 //
+nix-2605 //
 nix-unstable //
 atomipkgs
