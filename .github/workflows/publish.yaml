@@ -12,8 +12,6 @@ env:
 jobs:
   test:
     name: Test
-    permissions:
-      contents: read
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -29,9 +27,9 @@ jobs:
       - name: Run CyanPrint Tests
         run: cyanprint test template . --parallel 1
   publish:
-    name: Publish
     needs: test
     if: github.ref == 'refs/heads/main'
+    name: Publish
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
